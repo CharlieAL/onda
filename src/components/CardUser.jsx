@@ -6,8 +6,9 @@ export default function CardUser({
   user_handle,
   avatar_url,
   first_name,
-  friend_status,
-  user_id
+  friend_status = null,
+  user_id,
+  onClick = null
 }) {
   const { fetchRequestFriend, fetchAcceptFriend } = useUserActions()
   const handleClick = () => {
@@ -63,7 +64,7 @@ export default function CardUser({
           // variant={
 
           // }
-          onPress={handleClick}
+          onPress={onClick ? onClick : handleClick}
         >
           {friend_status}
         </Button>
