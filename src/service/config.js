@@ -10,7 +10,8 @@ export const config = {
     getUsers: 'users',
     sendFriendRequest: 'users/send-friend-request/',
     acceptFriendRequest: 'users/accept-friend-request/',
-    friends: 'users/friends'
+    friends: 'users/friends',
+    messages: 'users/messages/'
   },
   events: {
     get: 'events',

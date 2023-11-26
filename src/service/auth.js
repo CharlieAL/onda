@@ -217,3 +217,25 @@ export const getFriends = async () => {
     throw new Error(error.message)
   }
 }
+
+export const getMessages = async (friendId) => {
+  try {
+    const URL = `${config.url}${config.auth.messages}${friendId}`
+    const response = await fetch(URL, {
+      method: 'get',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed to get messages')
+    }
+
+    const data = await response.json()
+    return data
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}
