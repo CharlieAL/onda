@@ -1,4 +1,5 @@
 import Card from './Card'
+import CardSkeleton from './CardSkeleton'
 
 function ListCards({ data = [], loading, update = false }) {
   return (
@@ -13,7 +14,7 @@ function ListCards({ data = [], loading, update = false }) {
                 {...item}
               />
             ) : (
-              <div>cargando</div>
+              <CardSkeleton />
             )}
           </div>
         ))
