@@ -1,18 +1,37 @@
-import React from 'react'
+import useTimeago from '../hooks/useTimeAgo'
 
-export default function Message({ de, mensaje, myId }) {
+export default function Message({
+  de,
+  mensaje,
+  myId,
+  avatarFriend,
+  avatarMe,
+  created_at
+}) {
+  const timaago = useTimeago(created_at)
+
   return de === myId ? (
     <div className='chat-message'>
       <div className='flex items-end justify-end'>
         <div className='flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end'>
-          <div>
-            <span className='px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white font-semibold text-sm'>
-              {mensaje}
-            </span>
+          <div className='flex flex-col items-end'>
+            <div>
+              <span className='px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white font-semibold text-sm'>
+                {mensaje}
+              </span>
+            </div>
+            <div>
+              <span className=' text-xs text-gray-400 mr-2 mb-2'>
+                {timaago}
+              </span>
+            </div>
           </div>
         </div>
         <img
-          src='https://images.unsplash.com/photo-1590031905470-a1a1feacbb0b?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144'
+          src={
+            avatarMe ||
+            'https://img.freepik.com/vector-premium/icono-cuenta-icono-usuario-graficos-vectoriales_292645-552.jpg'
+          }
           alt='My profile'
           className='w-6 h-6 rounded-full order-2'
         />
@@ -29,7 +48,10 @@ export default function Message({ de, mensaje, myId }) {
           </div>
         </div>
         <img
-          src='https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144'
+          src={
+            avatarFriend ||
+            'https://img.freepik.com/vector-premium/icono-cuenta-icono-usuario-graficos-vectoriales_292645-552.jpg'
+          }
           alt='My profile'
           className='w-6 h-6 rounded-full order-1'
         />

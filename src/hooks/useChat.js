@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { addChat, addMessage } from '../store/chats/slice'
+import { addChat, addMessage, addMessages } from '../store/chats/slice'
 
 export const useChatSelector = useSelector
 
@@ -14,5 +14,9 @@ export const useChatActions = () => {
     dispatch(addMessage(payload))
   }
 
-  return { saveChat, saveMessage }
+  const saveMessages = (payload) => {
+    dispatch(addMessages(payload))
+  }
+
+  return { saveChat, saveMessage, saveMessages }
 }

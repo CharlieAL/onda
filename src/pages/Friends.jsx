@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-import { getFriends } from '../service/auth'
+import { getFriends, getMessages } from '../service/auth'
 
 import { Avatar, CardBody, Card } from '@nextui-org/react'
 import { ArrowRightIcon } from '../assets/icons/svg'
 import { useNavigate } from 'react-router-dom'
-import { useChatSelector } from '../hooks/useChat'
+import { useChatActions, useChatSelector } from '../hooks/useChat'
 
 function Friends() {
   const [friends, setFriends] = useState([])
@@ -12,13 +12,25 @@ function Friends() {
   const navigate = useNavigate()
 
   const chats = useChatSelector((state) => state.chat.data)
-  console.log(chats)
+
+  const { saveMessages } = useChatActions()
 
   useEffect(() => {
     getFriends()
       .then((res) => {
         setFriends(res)
-        console.log(res)
+        res.forEach((friend) => {
+          getMessages(friend.user_id).then((messages) => {
+            console.log({
+              idFriend: friend.user_id + '',
+              messages
+            })
+            saveMessages({
+              idFriend: friend.user_id + '',
+              messages
+            })
+          })
+        })
       })
       .catch((err) => {
         console.log(err)

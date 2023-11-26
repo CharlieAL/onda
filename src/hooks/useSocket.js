@@ -62,7 +62,8 @@ export const useSocket = (uid) => {
           message: {
             de: mensaje.de,
             para: mensaje.para,
-            mensaje: mensaje.mensaje
+            mensaje: mensaje.mensaje,
+            created_at: mensaje.created_at
           }
         })
         // Maneja el mensaje recibido como desees en tu frontend
@@ -84,7 +85,8 @@ export const useSocket = (uid) => {
           message: {
             de: mensaje.de,
             para: mensaje.para,
-            mensaje: mensaje.mensaje
+            mensaje: mensaje.mensaje,
+            created_at: mensaje.created_at
           }
         })
         // Maneja el mensaje recibido como desees en tu frontend

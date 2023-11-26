@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useSocket } from '../hooks/useSocket'
 import { useAuthSelector } from '../hooks/useAuth'
 import { Avatar, Button } from '@nextui-org/react'
 import { BackIcon, SendIcon } from '../assets/icons/svg'
-import { getUser } from '../service/auth'
+import { getMessages, getUser } from '../service/auth'
 import Message from '../components/Message'
 import { useChatActions, useChatSelector } from '../hooks/useChat'
 
@@ -12,21 +12,25 @@ function Chat() {
   const { user } = useAuthSelector((state) => state.auth)
   const [friend, setFriend] = useState({})
   const navigate = useNavigate()
-  const { sendMessage, receiveMessage } = useSocket(user.user_id)
+  const { sendMessage } = useSocket(user.user_id)
   const { id } = useParams()
   const chats = useChatSelector((state) => state.chat.data)
-  console.log(chats)
 
-  const { saveChat, saveMessage } = useChatActions()
+  const { saveMessage, saveMessages } = useChatActions()
 
   useEffect(() => {
     getUser(id).then((res) => {
-      console.log(res)
-      saveChat({
-        idFriend: id,
-        messages: []
-      })
       setFriend(res)
+    })
+  }, [id])
+
+  useEffect(() => {
+    getMessages(id).then((messages) => {
+      console.log(messages)
+      saveMessages({
+        idFriend: id + '',
+        messages
+      })
     })
   }, [id])
 
@@ -39,16 +43,18 @@ function Chat() {
       deName: user.user_handle,
       de: user.user_id + '',
       para: id,
-      mensaje: message
+      mensaje: message,
+      created_at: new Date().toISOString()
     }
     sendMessage(payload)
 
     saveMessage({
       idFriend: id,
       message: {
-        de: user.user_id,
+        de: user.user_id + '',
         para: id,
-        mensaje: message
+        mensaje: message,
+        created_at: new Date().toISOString()
       }
     })
 
@@ -93,10 +99,13 @@ function Chat() {
         >
           {messages.map((message, i) => (
             <Message
+              created_at={message.created_at}
+              avatarFriend={friend.avatar_url}
+              avatarMe={user.avatar_url}
               key={i}
               de={message.de}
               mensaje={message.mensaje}
-              myId={user.user_id}
+              myId={user.user_id + ''}
             />
           ))}
         </div>
