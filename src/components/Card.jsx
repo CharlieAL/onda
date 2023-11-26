@@ -28,7 +28,7 @@ export default function Card({
   city,
   timetables,
   flayer,
-  backflayer,
+
   num_people_asist,
   num_likes,
   create_at,
@@ -75,7 +75,7 @@ export default function Card({
       </CardHeader>
       <Divider />
       {/* bg-gradient-to-b from-blue-500 via-purple-500 to-pink-400 */}
-      <CardBody className='  p-0 '>
+      <CardBody className=' rounded-none p-0 '>
         <Image
           src={flayer || 'https://fomantic-ui.com/images/wireframe/image.png'}
           alt='ONDA Image with fallback'
