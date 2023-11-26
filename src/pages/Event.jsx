@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { getEvent } from '../service/events'
 import { Button, Image } from '@nextui-org/react'
 import ModalComprarBoleto from '../components/ModalComprarBoleto'
+import ModalnvitarAmigos from '../components/ModalnvitarAmigos'
 
 function Event() {
   const { id } = useParams()
@@ -33,13 +34,11 @@ function Event() {
           price={event.price}
           event_id={event.event_id}
         />
-        <Button
-          color='primary'
-          variant='flat'
-          className='w-full'
-        >
-          Invitar Amigos
-        </Button>
+        <ModalnvitarAmigos
+          url={event.flayer}
+          idEvent={event.event_id}
+          title={event.title}
+        />
         <Button
           color='warning'
           variant='flat'

@@ -46,7 +46,7 @@ function Friends() {
         const lastMessage = thisChat?.messages
           ? thisChat.messages[thisChat.messages.length - 1]
           : {}
-        console.log(lastMessage)
+        // console.log(lastMessage?.mensaje.includes('#evento'))
         return (
           <div
             key={friend.user_id}
@@ -77,7 +77,11 @@ function Friends() {
                       @{friend.user_handle}
                     </h4>
                     <p className='text-small font-light text-gray-400'>
-                      {lastMessage?.mensaje || 'No hay mensajes'}
+                      {lastMessage?.mensaje
+                        ? lastMessage?.mensaje.includes('#evento')
+                          ? 'Invitacion a evento'
+                          : lastMessage?.mensaje || 'No hay mensajes'
+                        : 'No hay mensajes'}
                     </p>
                   </div>
                 </div>

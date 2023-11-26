@@ -1,4 +1,7 @@
+import { useEffect, useState } from 'react'
 import useTimeago from '../hooks/useTimeAgo'
+import { Button, Image } from '@nextui-org/react'
+import { useNavigate } from 'react-router-dom'
 
 export default function Message({
   de,
@@ -8,7 +11,36 @@ export default function Message({
   avatarMe,
   created_at
 }) {
+  const [info, setInfo] = useState(null)
   const timaago = useTimeago(created_at)
+  const navigate = useNavigate()
+
+  // }
+
+  useEffect(() => {
+    const regex = /#(\w+),(\S+),(\w+)/
+    const regex2 = /#(\w+),([^,]+),([^,]+),(.+)/
+
+    const match = mensaje.match(regex)
+    const match2 = mensaje.match(regex2)
+
+    if (match) {
+      const [, , url_foto, id] = match
+      if (id && url_foto) {
+        setInfo({ id, url_foto })
+      } else {
+        setInfo(null)
+      }
+    }
+    if (match2) {
+      const [, , url_foto, id, title] = match2
+      if (id && url_foto && title) {
+        setInfo({ id, url_foto, title })
+      } else {
+        setInfo(null)
+      }
+    }
+  }, [mensaje])
 
   return de === myId ? (
     <div className='chat-message'>
@@ -17,7 +49,24 @@ export default function Message({
           <div className='flex flex-col items-end'>
             <div>
               <span className='px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white font-semibold text-sm'>
-                {mensaje}
+                {info ? (
+                  <div className='flex flex-col justify-center gap-y-1'>
+                    <Image
+                      src={info.url_foto}
+                      width={200}
+                      height={200}
+                      className='object-contain'
+                    />
+                    <Button
+                      onClick={() => navigate(`/event/${info.id}`)}
+                      color='success'
+                    >
+                      {info?.title || 'ver publicacion'}
+                    </Button>
+                  </div>
+                ) : (
+                  mensaje
+                )}
               </span>
             </div>
             <div>
@@ -43,7 +92,24 @@ export default function Message({
         <div className='flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start'>
           <div>
             <span className='px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600 font-semibold text-sm'>
-              {mensaje}
+              {info ? (
+                <div className='flex flex-col justify-center gap-y-5'>
+                  <Image
+                    src={info.url_foto}
+                    width={200}
+                    height={200}
+                    className='object-contain'
+                  />
+                  <Button
+                    onClick={() => navigate(`/event/${info.id}`)}
+                    color='success'
+                  >
+                    ver publicacion
+                  </Button>
+                </div>
+              ) : (
+                mensaje
+              )}
             </span>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useSocket } from '../hooks/useSocket'
 import { useAuthSelector } from '../hooks/useAuth'
@@ -26,7 +26,6 @@ function Chat() {
 
   useEffect(() => {
     getMessages(id).then((messages) => {
-      console.log(messages)
       saveMessages({
         idFriend: id + '',
         messages
@@ -61,8 +60,21 @@ function Chat() {
     form.reset()
   }
 
+  const messagesEndRef = useRef(null)
+
+  // Función para desplazar hacia abajo el área de mensajes
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }
+
   const thisChat = chats.find((chat) => chat.idFriend === id)
-  const messages = thisChat ? thisChat.messages : []
+  const messages = useMemo(() => {
+    return thisChat ? thisChat.messages : []
+  }, [thisChat])
+
+  useEffect(() => {
+    scrollToBottom() // Llama a la función cuando cambian los mensajes
+  }, [messages])
   return (
     <>
       <section className='flex-1 p:2 sm:p-6 justify-between flex flex-col h-screen'>
@@ -108,6 +120,7 @@ function Chat() {
               myId={user.user_id + ''}
             />
           ))}
+          <div ref={messagesEndRef} />
         </div>
         <div className='border-t-2 border-gray-800 px-4 pt-4 mb-2 sm:mb-0 pb-16'>
           <form
