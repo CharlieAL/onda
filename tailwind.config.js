@@ -1,5 +1,5 @@
 import { nextui } from '@nextui-org/react'
-
+import { VitePWA } from 'vite-plugin-pwa'
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: 'class',
@@ -17,5 +17,5 @@ export default {
       }
     }
   },
-  plugins: [nextui()]
+  plugins: [nextui(), VitePWA({ registerType: 'autoUpdate' })]
 }

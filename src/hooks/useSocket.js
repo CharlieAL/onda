@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { io } from 'socket.io-client'
 import { toast } from 'sonner'
 import { useChatActions } from './useChat'
+import { config } from '../service/config'
 
 export const useSocket = (uid) => {
   const socket = useRef(null)
@@ -15,7 +16,7 @@ export const useSocket = (uid) => {
   const { saveMessage } = useChatActions()
 
   const connect = useCallback(() => {
-    socket.current = io('https://onda-qbmj.onrender.com', {
+    socket.current = io(config.url, {
       query: {
         uid
       }
