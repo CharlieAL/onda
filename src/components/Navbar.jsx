@@ -16,7 +16,7 @@ const Navbar = ({ scroll, user, isHome }) => {
         scroll === 'up' ? 'translate-y-0' : '-translate-y-full'
       }`}
     >
-      <div className='flex justify-between items-end h-16  text-center px-5'>
+      <div className='flex justify-between items-end  text-center px-5'>
         {isHome ? (
           <div className=' w-full flex justify-between items-center'>
             <button
