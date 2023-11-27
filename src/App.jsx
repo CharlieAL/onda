@@ -26,43 +26,43 @@ function App() {
       <Routes>
         <Route
           path='/login'
-          element={!user.isAuthenticated ? <Login /> : <Navigate to='/' />}
+          element={!user?.isAuthenticated ? <Login /> : <Navigate to='/' />}
         />
         <Route
           path='/signup'
-          element={!user.isAuthenticated ? <SignUp /> : <Navigate to='/' />}
+          element={!user?.isAuthenticated ? <SignUp /> : <Navigate to='/' />}
         />
         <Route
           path='/'
-          element={user.isAuthenticated ? <Home /> : <Navigate to='/login' />}
+          element={user?.isAuthenticated ? <Home /> : <Navigate to='/login' />}
         />
         <Route
           path='/create'
           element={
-            user.isAuthenticated ? <CreateEvent /> : <Navigate to='/login' />
+            user?.isAuthenticated ? <CreateEvent /> : <Navigate to='/login' />
           }
         />
         <Route
           path='/create-my-company'
           element={
-            user.isAuthenticated ? <CreateCompany /> : <Navigate to='/login' />
+            user?.isAuthenticated ? <CreateCompany /> : <Navigate to='/login' />
           }
         />
         <Route
           path='/profile/:id'
           element={
-            user.isAuthenticated ? <Profile /> : <Navigate to='/login' />
+            user?.isAuthenticated ? <Profile /> : <Navigate to='/login' />
           }
         />
         <Route
           path='/my-events-likes'
           element={
-            user.isAuthenticated ? <MyLikesEvents /> : <Navigate to='/login' />
+            user?.isAuthenticated ? <MyLikesEvents /> : <Navigate to='/login' />
           }
         />
         <Route
           path='/users'
-          element={user.isAuthenticated ? <Users /> : <Navigate to='/login' />}
+          element={user?.isAuthenticated ? <Users /> : <Navigate to='/login' />}
         />
         <Route
           path='/event/:id'
