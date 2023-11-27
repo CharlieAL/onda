@@ -67,7 +67,7 @@ function Layout({ children, isAuthenticated, user }) {
 
         {!path.includes('/chat/') && isAuthenticated && (
           <div
-            className={`before:bg-white/10 border-white/20 border-1  pt-2 pb-10 sticky before:rounded-xl border-[#292f46] bg-gradient-to-l from-gray-900  to-black   bottom-0 shadow-small z-50 backdrop-blur-lg space-x-4 bg-black/10 transition-all delay-200 duration-1000  ${
+            className={`before:bg-white/10   pt-2 pb-10 sticky before:rounded-xl bg-gradient-to-l from-gray-900  to-black   bottom-0 shadow-small z-50 backdrop-blur-lg space-x-4 bg-black/10 transition-all delay-200 duration-1000  ${
               scrollDirection === 'up' ? 'translate-y-0' : 'translate-y-full'
             } `}
           >

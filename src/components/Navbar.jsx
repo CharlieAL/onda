@@ -12,7 +12,7 @@ const Navbar = ({ scroll, user, isHome }) => {
   }
   return (
     <div
-      className={`before:bg-white  border-1 left-0  py-2 sticky before:rounded-xl   top-0 shadow-small z-50  border-[#292f46] bg-gradient-to-l from-gray-900  to-black text-[#a8b0d3]  transition-all delay-200 duration-1000   ${
+      className={`before:bg-white  left-0  py-2 sticky before:rounded-xl   top-0 shadow-small z-50   bg-gradient-to-l from-gray-900  to-black text-[#a8b0d3]  transition-all delay-200 duration-1000   ${
         scroll === 'up' ? 'translate-y-0' : '-translate-y-full'
       }`}
     >
