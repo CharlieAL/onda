@@ -75,7 +75,7 @@ export const useSocket = (uid, path = '/') => {
         // Maneja el mensaje recibido como desees en tu frontend
       })
     }
-  }, [])
+  }, [path])
 
   const sendTyping = useCallback((isTyping) => {
     if (socket.current) {
