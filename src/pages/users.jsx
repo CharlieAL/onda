@@ -14,10 +14,6 @@ const Users = () => {
     fetchUsers()
   }, [])
 
-  if (loading) {
-    return <p>Cargando usuarios...</p>
-  }
-
   if (error) {
     return <p>Error al cargar usuarios: {error}</p>
   }
