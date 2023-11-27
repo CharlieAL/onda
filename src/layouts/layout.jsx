@@ -50,7 +50,7 @@ function Layout({ children, isAuthenticated, user }) {
   }, [path])
   return (
     <div className='grid place-content-center'>
-      <div className='h-screen w-screen relative overflow-hidden '>
+      <div className='h-screen w-screen relative '>
         <main
           ref={containerRef}
           className={`overflow-y-auto h-screen   `}
