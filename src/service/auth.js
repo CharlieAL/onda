@@ -239,3 +239,91 @@ export const getMessages = async (friendId) => {
     throw new Error(error.message)
   }
 }
+
+export const sendPermission = async (id) => {
+  try {
+    const URL = `${config.url}${config.auth.sendPermission}${id}`
+    const response = await fetch(URL, {
+      method: 'post',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed to get messages')
+    }
+
+    const data = await response.json()
+    return data
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}
+
+export const getPermissions = async () => {
+  try {
+    const URL = `${config.url}${config.auth.permissions}`
+    const response = await fetch(URL, {
+      method: 'get',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed get permissions')
+    }
+
+    const data = await response.json()
+    return data
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}
+
+export const givePermission = async (userId) => {
+  try {
+    const URL = `${config.url}${config.auth.givePermission}${userId}`
+    const response = await fetch(URL, {
+      method: 'put',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed give permission')
+    }
+
+    const data = await response.json()
+    return data
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}
+
+export const removePermission = async (userId) => {
+  try {
+    const URL = `${config.url}${config.auth.removerPermission}${userId}`
+    const response = await fetch(URL, {
+      method: 'put',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed remove permission')
+    }
+
+    const data = await response.json()
+    return data
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}

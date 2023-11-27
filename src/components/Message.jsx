@@ -48,7 +48,13 @@ export default function Message({
         <div className='flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end'>
           <div className='flex flex-col items-end'>
             <div>
-              <span className='px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white font-semibold text-sm'>
+              <span
+                className={`px-4 py-2 rounded-lg inline-block rounded-br-none ${
+                  info
+                    ? 'bg-gradient-to-l from-azul  to-pink-400 '
+                    : 'bg-gradient-to-b from-red-500 to-red-800'
+                } text-white font-normal text-sm`}
+              >
                 {info ? (
                   <div className='flex flex-col justify-center gap-y-1'>
                     <Image
@@ -59,7 +65,7 @@ export default function Message({
                     />
                     <Button
                       onClick={() => navigate(`/event/${info.id}`)}
-                      color='success'
+                      color='danger'
                     >
                       {info?.title || 'ver publicacion'}
                     </Button>
@@ -91,7 +97,13 @@ export default function Message({
       <div className='flex items-end'>
         <div className='flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start'>
           <div>
-            <span className='px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600 font-semibold text-sm'>
+            <span
+              className={`px-4 py-2 rounded-lg inline-block rounded-br-none ${
+                info
+                  ? 'bg-gradient-to-r from-slate-500 to-yellow-100'
+                  : 'bg-gradient-to-b from-fuchsia-600 to-pink-600'
+              } text-white font-normal text-sm`}
+            >
               {info ? (
                 <div className='flex flex-col justify-center gap-y-5'>
                   <Image
@@ -102,7 +114,7 @@ export default function Message({
                   />
                   <Button
                     onClick={() => navigate(`/event/${info.id}`)}
-                    color='success'
+                    color='danger'
                   >
                     ver publicacion
                   </Button>

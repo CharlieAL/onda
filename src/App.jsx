@@ -13,6 +13,7 @@ import Event from './pages/Event'
 import MyTickets from './pages/MisBoletos'
 import Chat from './pages/Chat'
 import Friends from './pages/Friends'
+import Permissions from './pages/Permissions'
 
 function App() {
   const user = useAuthSelector((state) => state.auth)
@@ -91,6 +92,12 @@ function App() {
             ) : (
               <Navigate to='/login' />
             )
+          }
+        />
+        <Route
+          path='/permissions'
+          element={
+            user.isAuthenticated ? <Permissions /> : <Navigate to='/login' />
           }
         />
       </Routes>

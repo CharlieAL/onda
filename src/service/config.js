@@ -1,5 +1,5 @@
 export const config = {
-  url: 'http://localhost:3000/api/',
+  url: 'https://onda-qbmj.onrender.com/api/',
   auth: {
     login: 'users/signin',
     signup: 'users/signup',
@@ -11,7 +11,11 @@ export const config = {
     sendFriendRequest: 'users/send-friend-request/',
     acceptFriendRequest: 'users/accept-friend-request/',
     friends: 'users/friends',
-    messages: 'users/messages/'
+    messages: 'users/messages/',
+    sendPermission: 'users/permissions/',
+    permissions: 'users/permissions',
+    givePermission: 'users/give-permission-by-create-company/',
+    removerPermission: 'users/remove-permission-by-create-company/'
   },
   events: {
     get: 'events',

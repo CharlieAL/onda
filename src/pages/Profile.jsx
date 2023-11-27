@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { getUser, updateUser } from '../service/auth'
+import { getUser, sendPermission, updateUser } from '../service/auth'
 import {
   Avatar,
   Button,
@@ -14,6 +14,7 @@ import {
 import {
   EditIcon,
   EmailIcon,
+  LockIcon,
   LogoutIcon,
   PhoneIcon,
   PlusIcon,
@@ -64,6 +65,17 @@ function Profile() {
         form.reset()
         userUpdateContext({ [data.name]: text })
         toast.success(`updated ${data.name}`)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  const handleSendPermission = () => {
+    sendPermission(id)
+      .then((res) => {
+        console.log(res)
+        toast.success('permission send')
       })
       .catch((err) => {
         console.log(err)
@@ -195,6 +207,17 @@ function Profile() {
               <PlusIcon />
             </ProfileButton>
           )}
+          {user?.role === 'admin' && (
+            <ProfileButton
+              label={'ver permisos'}
+              onClick={() => {
+                navigate(`/permissions`)
+              }}
+            >
+              <LockIcon />
+            </ProfileButton>
+          )}
+
           <ProfileButton
             label={'Logout'}
             onClick={() => {
@@ -211,6 +234,7 @@ function Profile() {
               <Button
                 isIconOnly
                 color='primary'
+                onClick={handleSendPermission}
               >
                 <SendIcon />
               </Button>
@@ -219,7 +243,12 @@ function Profile() {
           )}
           {user?.role === 'company' && (
             <div className='flex flex-col items-center'>
-              <Button color='primary'>
+              <Button
+                color='primary'
+                onClick={() => {
+                  navigate(`/create-my-company`)
+                }}
+              >
                 <EditIcon />
                 edit company
               </Button>

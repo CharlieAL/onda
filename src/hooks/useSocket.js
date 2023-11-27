@@ -15,7 +15,7 @@ export const useSocket = (uid) => {
   const { saveMessage } = useChatActions()
 
   const connect = useCallback(() => {
-    socket.current = io('http://localhost:3000', {
+    socket.current = io('https://onda-qbmj.onrender.com', {
       query: {
         uid
       }
