@@ -28,6 +28,8 @@ function Login() {
 
     login(user_handle, password)
       .then((res) => {
+        console.log(res)
+        localStorage.setItem('token', res.token)
         const user = res.payload
         saveUser(user)
       })

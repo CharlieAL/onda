@@ -46,12 +46,14 @@ export const signUp = async (userData) => {
 }
 
 export const sendLogout = async () => {
+  const token = localStorage.getItem('token')
   const URL = `${config.url}${config.auth.logout}`
   const response = await fetch(URL, {
     method: 'POST',
     credentials: 'include',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      Authorization: `${token}`
     }
   })
 
@@ -64,13 +66,15 @@ export const sendLogout = async () => {
 }
 
 export const verifyToken = async () => {
+  const token = localStorage.getItem('token')
   try {
     const URL = `${config.url}${config.auth.verifyToken}`
     const response = await fetch(URL, {
       method: 'get',
       credentials: 'include',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `${token}`
       }
     })
 
@@ -86,13 +90,15 @@ export const verifyToken = async () => {
 }
 
 export const getUser = async (userId) => {
+  const token = localStorage.getItem('token')
   try {
     const URL = `${config.url}${config.auth.getUser}${userId}`
     const response = await fetch(URL, {
       method: 'get',
       credentials: 'include',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `${token}`
       }
     })
 
@@ -108,13 +114,15 @@ export const getUser = async (userId) => {
 }
 
 export const updateUser = async (userId, userData) => {
+  const token = localStorage.getItem('token')
   try {
     const URL = `${config.url}${config.auth.updateUser}${userId}`
     const response = await fetch(URL, {
       method: 'put',
       credentials: 'include',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `${token}`
       },
       body: JSON.stringify(userData)
     })
@@ -131,13 +139,15 @@ export const updateUser = async (userId, userData) => {
 }
 
 export const getUsers = async () => {
+  const token = localStorage.getItem('token')
   try {
     const URL = `${config.url}${config.auth.getUsers}`
     const response = await fetch(URL, {
       method: 'get',
       credentials: 'include',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `${token}`
       }
     })
 
@@ -153,13 +163,15 @@ export const getUsers = async () => {
 }
 
 export const sendFriendRequest = async (friendId) => {
+  const token = localStorage.getItem('token')
   try {
     const URL = `${config.url}${config.auth.sendFriendRequest}${friendId}`
     const response = await fetch(URL, {
       method: 'post',
       credentials: 'include',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `${token}`
       }
     })
 
@@ -175,13 +187,15 @@ export const sendFriendRequest = async (friendId) => {
 }
 
 export const acceptFriendRequest = async (friendId) => {
+  const token = localStorage.getItem('token')
   try {
     const URL = `${config.url}${config.auth.acceptFriendRequest}${friendId}`
     const response = await fetch(URL, {
       method: 'put',
       credentials: 'include',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `${token}`
       }
     })
 
@@ -197,13 +211,15 @@ export const acceptFriendRequest = async (friendId) => {
 }
 
 export const getFriends = async () => {
+  const token = localStorage.getItem('token')
   try {
     const URL = `${config.url}${config.auth.friends}`
     const response = await fetch(URL, {
       method: 'get',
       credentials: 'include',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `${token}`
       }
     })
 
@@ -219,13 +235,15 @@ export const getFriends = async () => {
 }
 
 export const getMessages = async (friendId) => {
+  const token = localStorage.getItem('token')
   try {
     const URL = `${config.url}${config.auth.messages}${friendId}`
     const response = await fetch(URL, {
       method: 'get',
       credentials: 'include',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `${token}`
       }
     })
 
@@ -241,13 +259,15 @@ export const getMessages = async (friendId) => {
 }
 
 export const sendPermission = async (id) => {
+  const token = localStorage.getItem('token')
   try {
     const URL = `${config.url}${config.auth.sendPermission}${id}`
     const response = await fetch(URL, {
       method: 'post',
       credentials: 'include',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `${token}`
       }
     })
 
@@ -263,13 +283,15 @@ export const sendPermission = async (id) => {
 }
 
 export const getPermissions = async () => {
+  const token = localStorage.getItem('token')
   try {
     const URL = `${config.url}${config.auth.permissions}`
     const response = await fetch(URL, {
       method: 'get',
       credentials: 'include',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `${token}`
       }
     })
 
@@ -285,13 +307,15 @@ export const getPermissions = async () => {
 }
 
 export const givePermission = async (userId) => {
+  const token = localStorage.getItem('token')
   try {
     const URL = `${config.url}${config.auth.givePermission}${userId}`
     const response = await fetch(URL, {
       method: 'put',
       credentials: 'include',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `${token}`
       }
     })
 
@@ -307,13 +331,15 @@ export const givePermission = async (userId) => {
 }
 
 export const removePermission = async (userId) => {
+  const token = localStorage.getItem('token')
   try {
     const URL = `${config.url}${config.auth.removerPermission}${userId}`
     const response = await fetch(URL, {
       method: 'put',
       credentials: 'include',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `${token}`
       }
     })
 

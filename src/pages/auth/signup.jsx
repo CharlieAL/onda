@@ -48,6 +48,7 @@ function SignUp() {
       password
     })
       .then((res) => {
+        localStorage.setItem('token', res.token)
         const user = res.payload
         saveUser(user)
       })

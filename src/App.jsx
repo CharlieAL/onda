@@ -17,6 +17,7 @@ import Permissions from './pages/Permissions'
 
 function App() {
   const user = useAuthSelector((state) => state.auth)
+  console.log(user)
 
   return (
     <Layout

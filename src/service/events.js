@@ -1,13 +1,16 @@
 import { config } from './config'
 
 export const getEvents = async () => {
+  const token = localStorage.getItem('token')
+  console.log(token)
   const URL = `${config.url}${config.events.get}`
   try {
     const response = await fetch(URL, {
       method: 'get',
       credentials: 'include',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `${token}`
       }
     })
 
@@ -23,14 +26,15 @@ export const getEvents = async () => {
 }
 
 export const postEvent = async (body) => {
-  console.log(body)
+  const token = localStorage.getItem('token')
   const URL = `${config.url}${config.events.create}`
   try {
     const response = await fetch(URL, {
       method: 'post',
       credentials: 'include',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `${token}`
       },
       body: JSON.stringify(body)
     })
@@ -45,13 +49,15 @@ export const postEvent = async (body) => {
 }
 
 export const postLike = async (eventId) => {
+  const token = localStorage.getItem('token')
   const URL = `${config.url}${config.events.like}${eventId}`
   try {
     const response = await fetch(URL, {
       method: 'post',
       credentials: 'include',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `${token}`
       }
     })
 
@@ -66,13 +72,15 @@ export const postLike = async (eventId) => {
 }
 
 export const deleteLike = async (eventId) => {
+  const token = localStorage.getItem('token')
   const URL = `${config.url}${config.events.like}${eventId}`
   try {
     const response = await fetch(URL, {
       method: 'delete',
       credentials: 'include',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `${token}`
       }
     })
     if (!response.ok) {
@@ -86,13 +94,15 @@ export const deleteLike = async (eventId) => {
 }
 
 export const getComments = async (eventId) => {
+  const token = localStorage.getItem('token')
   const URL = `${config.url}${config.events.comment}${eventId}`
   try {
     const response = await fetch(URL, {
       method: 'get',
       credentials: 'include',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `${token}`
       }
     })
 
@@ -107,13 +117,15 @@ export const getComments = async (eventId) => {
 }
 
 export const createComment = async (eventId, comment) => {
+  const token = localStorage.getItem('token')
   const URL = `${config.url}${config.events.comment}${eventId}`
   try {
     const response = await fetch(URL, {
       method: 'post',
       credentials: 'include',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `${token}`
       },
       body: JSON.stringify({ comment })
     })
@@ -129,13 +141,15 @@ export const createComment = async (eventId, comment) => {
 }
 
 export const getMyLikesEvents = async () => {
+  const token = localStorage.getItem('token')
   const URL = `${config.url}${config.events.myLikes}`
   try {
     const response = await fetch(URL, {
       method: 'get',
       credentials: 'include',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `${token}`
       }
     })
 
@@ -150,6 +164,7 @@ export const getMyLikesEvents = async () => {
 }
 
 export const getEvent = async (eventId) => {
+  const token = localStorage.getItem('token')
   const number = Number(eventId)
   const URL = `${config.url}${config.events.getOne}${number}`
   try {
@@ -157,7 +172,8 @@ export const getEvent = async (eventId) => {
       method: 'get',
       credentials: 'include',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `${token}`
       }
     })
 
@@ -172,13 +188,15 @@ export const getEvent = async (eventId) => {
 }
 
 export const asistirEvento = async (eventId, boletos) => {
+  const token = localStorage.getItem('token')
   const URL = `${config.url}${config.events.asistirEvento}`
   try {
     const response = await fetch(URL, {
       method: 'post',
       credentials: 'include',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `${token}`
       },
       body: JSON.stringify({ eventId, boletos })
     })
@@ -194,13 +212,15 @@ export const asistirEvento = async (eventId, boletos) => {
 }
 
 export const getMyTickets = async () => {
+  const token = localStorage.getItem('token')
   const URL = `${config.url}${config.events.getMyTickets}`
   try {
     const response = await fetch(URL, {
       method: 'get',
       credentials: 'include',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `${token}`
       }
     })
 
