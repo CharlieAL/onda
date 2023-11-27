@@ -4,25 +4,5 @@ import react from '@vitejs/plugin-react-swc'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    VitePWA({
-      workbox: {
-        runtimeCaching: [
-          {
-            urlPattern: ({ url }) => {
-              return url.pathname.startsWith('/api')
-            },
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'api-cache',
-              cacheableResponse: {
-                statuses: [0, 200]
-              }
-            }
-          }
-        ]
-      }
-    })
-  ]
+  plugins: [react(), VitePWA({ registerType: 'autoUpdate' })]
 })
