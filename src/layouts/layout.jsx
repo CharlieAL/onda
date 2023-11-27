@@ -43,7 +43,7 @@ function Layout({ children, isAuthenticated, user }) {
     }
   }, [handleNavigation])
 
-  const { receiveMessage, receiveMessageNoSee } = useSocket(user?.user_id)
+  const { receiveMessage, receiveMessageNoSee } = useSocket(user?.user_id, path)
   useEffect(() => {
     console.log(path)
     if (path.includes('/chat')) {

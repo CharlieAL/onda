@@ -5,7 +5,7 @@ import { toast } from 'sonner'
 import { useChatActions } from './useChat'
 import { config } from '../service/config'
 
-export const useSocket = (uid) => {
+export const useSocket = (uid, path = '/') => {
   const socket = useRef(null)
   const [messages, setMessages] = useState([])
   const [users, setUsers] = useState([])
@@ -58,6 +58,11 @@ export const useSocket = (uid) => {
     if (socket.current) {
       socket.current.on('mensaje-personal', (mensaje) => {
         console.log(mensaje)
+        if (!path.includes('/chat/')) {
+          toast.info(`${mensaje.deName}`, {
+            description: `mensaje: ${mensaje.mensaje}`
+          })
+        }
         saveMessage({
           idFriend: mensaje.de,
           message: {
@@ -76,10 +81,6 @@ export const useSocket = (uid) => {
     if (socket.current) {
       socket.current.on('mensaje-personal', (mensaje) => {
         console.log(mensaje)
-
-        toast.info(`${mensaje.deName}`, {
-          description: `mensaje: ${mensaje.mensaje}`
-        })
 
         saveMessage({
           idFriend: mensaje.de,
