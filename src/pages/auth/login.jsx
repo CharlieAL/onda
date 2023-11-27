@@ -38,7 +38,7 @@ function Login() {
       })
   }
   return (
-    <section className='h-screen flex flex-col md:flex-row justify-center  items-center bg-gradient-to-b from-blue-500 via-purple-500 to-pink-400 '>
+    <section className='h-screen flex flex-col md:flex-row justify-center  items-center bg-gradient-to-b from-blue-500 via-purple-500 to-pink-400 py-28'>
       <Card className='w-[95%]'>
         <CardHeader className='flex gap-3'>
           <Image
