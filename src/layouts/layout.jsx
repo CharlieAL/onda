@@ -8,7 +8,6 @@ import {
 import { useHref, useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { useSocket } from '../hooks/useSocket'
 
 function Layout({ children, isAuthenticated, user }) {
   const navigate = useNavigate()
@@ -43,10 +42,6 @@ function Layout({ children, isAuthenticated, user }) {
     }
   }, [handleNavigation])
 
-  const { receiveMessage } = useSocket(user?.user_id, path)
-  useEffect(() => {
-    receiveMessage()
-  }, [])
   return (
     <div className='grid place-content-center'>
       <div className='h-screen w-screen relative overflow-hidden '>

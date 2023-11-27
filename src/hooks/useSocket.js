@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { io } from 'socket.io-client'
-import { toast } from 'sonner'
+
 import { useChatActions } from './useChat'
 import { config } from '../service/config'
 
-export const useSocket = (uid, path = '/') => {
+export const useSocket = (uid) => {
   const socket = useRef(null)
   const [messages, setMessages] = useState([])
   const [users, setUsers] = useState([])
@@ -58,11 +58,7 @@ export const useSocket = (uid, path = '/') => {
     if (socket.current) {
       socket.current.on('mensaje-personal', (mensaje) => {
         console.log(mensaje)
-        if (!path.includes('/chat/')) {
-          toast.info(`${mensaje.deName}`, {
-            description: `mensaje: ${mensaje.mensaje}`
-          })
-        }
+
         saveMessage({
           idFriend: mensaje.de,
           message: {
@@ -75,7 +71,7 @@ export const useSocket = (uid, path = '/') => {
         // Maneja el mensaje recibido como desees en tu frontend
       })
     }
-  }, [path])
+  }, [])
 
   const sendTyping = useCallback((isTyping) => {
     if (socket.current) {

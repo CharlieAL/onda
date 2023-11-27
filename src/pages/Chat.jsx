@@ -12,7 +12,7 @@ function Chat() {
   const { user } = useAuthSelector((state) => state.auth)
   const [friend, setFriend] = useState({})
   const navigate = useNavigate()
-  const { sendMessage } = useSocket(user.user_id)
+  const { sendMessage, receiveMessage } = useSocket(user.user_id)
   const { id } = useParams()
   const chats = useChatSelector((state) => state.chat.data)
 
@@ -32,6 +32,9 @@ function Chat() {
       })
     })
   }, [id])
+  useEffect(() => {
+    receiveMessage()
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()

@@ -28,7 +28,7 @@ const Navbar = ({ scroll, user, isHome }) => {
 
             <div>
               <h1 className='font-bold text-xl'>Nogales</h1>
-              <p className='text-xs text-gray-600'>v 0</p>
+              <p className='text-xs text-gray-600'>v 0.5</p>
             </div>
             <button onClick={handleProfileClick}>
               {user.avatar_url ? (
