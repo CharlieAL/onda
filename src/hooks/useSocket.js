@@ -16,7 +16,7 @@ export const useSocket = (uid) => {
   const { saveMessage } = useChatActions()
 
   const connect = useCallback(() => {
-    socket.current = io(config.url, {
+    socket.current = io(config.socket, {
       query: {
         uid
       }
