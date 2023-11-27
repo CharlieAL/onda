@@ -1,6 +1,6 @@
 export const config = {
-  // url: 'https://onda-qbmj.onrender.com/api/',
-  url: 'http://localhost:3000/api/',
+  url: 'https://onda-qbmj.onrender.com/api/',
+  // url: 'http://localhost:3000/api/',
   auth: {
     login: 'users/signin',
     signup: 'users/signup',
