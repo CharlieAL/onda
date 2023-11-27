@@ -43,17 +43,10 @@ function Layout({ children, isAuthenticated, user }) {
     }
   }, [handleNavigation])
 
-  const { receiveMessage, receiveMessageNoSee } = useSocket(user?.user_id, path)
+  const { receiveMessage } = useSocket(user?.user_id, path)
   useEffect(() => {
-    console.log(path)
-    if (path.includes('/chat')) {
-      console.log('recibiendo mensajes de chat')
-      return receiveMessage()
-    } else {
-      console.log('recibiendo mensajes fuera de chat')
-      return receiveMessageNoSee()
-    }
-  }, [path])
+    receiveMessage()
+  }, [])
   return (
     <div className='grid place-content-center'>
       <div className='h-screen w-screen relative overflow-hidden '>

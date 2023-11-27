@@ -77,25 +77,6 @@ export const useSocket = (uid, path = '/') => {
     }
   }, [])
 
-  const receiveMessageNoSee = useCallback(() => {
-    if (socket.current) {
-      socket.current.on('mensaje-personal', (mensaje) => {
-        console.log(mensaje)
-
-        saveMessage({
-          idFriend: mensaje.de,
-          message: {
-            de: mensaje.de,
-            para: mensaje.para,
-            mensaje: mensaje.mensaje,
-            created_at: mensaje.created_at
-          }
-        })
-        // Maneja el mensaje recibido como desees en tu frontend
-      })
-    }
-  }, [])
-
   const sendTyping = useCallback((isTyping) => {
     if (socket.current) {
       socket.current.emit('typing', isTyping)
@@ -115,7 +96,6 @@ export const useSocket = (uid, path = '/') => {
     user,
     sendMessage,
     sendTyping,
-    receiveMessage,
-    receiveMessageNoSee
+    receiveMessage
   }
 }
