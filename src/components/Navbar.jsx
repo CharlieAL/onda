@@ -26,7 +26,10 @@ const Navbar = ({ scroll, user, isHome }) => {
               <ChatIcon />
             </button>
 
-            <h1 className='font-bold text-xl'>Nogales</h1>
+            <div>
+              <h1 className='font-bold text-xl'>Nogales</h1>
+              <p className='text-xs text-gray-600'>v 0</p>
+            </div>
             <button onClick={handleProfileClick}>
               {user.avatar_url ? (
                 <Avatar
