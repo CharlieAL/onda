@@ -256,7 +256,12 @@ function Profile() {
           )}
           {user?.role === 'admin' && (
             <div className='flex flex-col items-center'>
-              <Button color='primary'>
+              <Button
+                color='primary'
+                onClick={() => {
+                  navigate(`/create-my-company`)
+                }}
+              >
                 <EditIcon />
                 edit company
               </Button>

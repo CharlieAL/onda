@@ -124,6 +124,9 @@ export default function Message({
               )}
             </span>
           </div>
+          <div>
+            <span className=' text-xs text-gray-400 mr-2 mb-2'>{timaago}</span>
+          </div>
         </div>
         <img
           src={
