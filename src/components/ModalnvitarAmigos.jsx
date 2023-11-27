@@ -31,7 +31,8 @@ export default function ModalnvitarAmigos({ url, idEvent, title }) {
     const payload = {
       de: user.user_id + '',
       para: friend.user_id + '',
-      mensaje: `#evento,${url},${idEvent},${title}`
+      mensaje: `#evento,${url},${idEvent},${title}`,
+      created_at: new Date().toISOString()
     }
     console.log(payload)
     sendMessage(payload)
