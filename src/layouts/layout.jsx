@@ -46,8 +46,13 @@ function Layout({ children, isAuthenticated, user }) {
   const { receiveMessage, receiveMessageNoSee } = useSocket(user?.user_id)
   useEffect(() => {
     console.log(path)
-    if (path.includes('/chat/')) return receiveMessage()
-    else return receiveMessageNoSee()
+    if (path.includes('/chat')) {
+      console.log('recibiendo mensajes de chat')
+      return receiveMessage()
+    } else {
+      console.log('recibiendo mensajes fuera de chat')
+      return receiveMessageNoSee()
+    }
   }, [path])
   return (
     <div className='grid place-content-center'>
